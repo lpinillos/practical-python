@@ -24,8 +24,6 @@ while principal > 0:
 
     principal = balance - pay
     total_paid += pay
-    print(months, round(total_paid, 4), round(principal, 4))
+    print(f'{months:5d} {total_paid:12.2f} {principal:12.2f}')
             
-
-print('Total paid', round(total_paid, 4))
-print("Months:", months)
+print(f'The total payment of the mortgage is {total_paid:0.4f} and it took {months} months')
