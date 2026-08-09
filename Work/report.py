@@ -33,12 +33,11 @@ def read_portfolio(filename):
     return portfolio
 
 if len(sys.argv) == 2:
-    filename = sys.argv[1]
+    filename_port = sys.argv[1]
 else:
-    filename = 'Data/portfolio.csv'
+    filename_port = 'Data/portfolio.csv'
 
-result = read_portfolio(filename)
-print(f'Result: {result}')
+result = read_portfolio(filename_port)
 
 def read_prices(filename):
     prices = {}
@@ -52,12 +51,11 @@ def read_prices(filename):
     return prices
 
 if len(sys.argv) == 2:
-    filename = sys.argv[1]
+    filename_price = sys.argv[1]
 else:
-    filename = 'Data/prices.csv'
+    filename_price = 'Data/prices.csv'
 
-dict_result = read_prices(filename)
-print(dict_result)
+dict_result = read_prices(filename_price)
 
 def calculate_gain_loss(stock_list,price_dict):
     old_price = 0.0
@@ -68,3 +66,23 @@ def calculate_gain_loss(stock_list,price_dict):
         current_price += price_dict[stock['name']] * stock['shares']
 
     return f'Current value of portfolio: {current_price} and the current {"gain" if (current_price - old_price) > 0 else "loss"} is: {current_price - old_price:0.2f}'
+
+def make_report(stock_list, price_dict):
+    '''Creates a structured report of the data'''
+    report = []
+
+    for stock in stock_list:
+        change = price_dict[stock['name']] - stock['price']
+        new_tuple = (stock['name'],stock['shares'],price_dict[stock['name']],change)
+        report.append(new_tuple)
+
+    return report
+
+final_report = make_report(read_portfolio(filename_port),read_prices(filename_price))
+
+headers = ('Name', 'Shares', 'Price', 'Change')
+print(f'{headers[0]:>10s} {headers[1]:>10s} {headers[2]:>10s} {headers[3]:>10s}')
+print('---------- ---------- ---------- ----------')
+for name, shares, price, change in final_report:
+    price = '$' + str(round(price,2))
+    print(f'{name:>10s} {shares:>10d} {price:>10s} {change:>10.2f}')
