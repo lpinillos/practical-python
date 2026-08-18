@@ -66,31 +66,3 @@ def portfolio_report(filename_port, filename_price):
     print_report(final_report)
 
 portfolio_report('Data/portfolio.csv', 'Data/prices.csv')
-
-# def read_portfolio(filename):
-#     '''Computes the total cost (shares*price) of a portfolio file'''
-#     portfolio = []
-#     with open(filename, 'rt') as f:
-#         rows = csv.reader(f)
-#         next(rows)
-#         for row in rows:
-#             try:
-#                 holding = (row[0],int(row[1]),float(row[2]))
-#                 portfolio.append(holding)
-#             except ValueError:
-#                 print('Could not convert string to float!', row) 
-#     return portfolio
-
-# if len(sys.argv) == 2:
-#     filename_port = sys.argv[1]
-# else:
-#     filename_port = 'Data/portfolio.csv'
-
-# result = read_portfolio(filename_port)
-
-# if len(sys.argv) == 2:
-#     filename_price = sys.argv[1]
-# else:
-#     filename_price = 'Data/prices.csv'
-
-# dict_result = read_prices(filename_price)
