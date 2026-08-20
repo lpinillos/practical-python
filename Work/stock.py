@@ -10,4 +10,3 @@ class Stock:
 
     def sell(self, sold_shares):
         self.shares -= sold_shares
-        return self.shares

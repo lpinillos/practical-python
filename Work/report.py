@@ -23,18 +23,18 @@ def calculate_gain_loss(stock_list,price_dict):
     old_price = 0.0
     current_price = 0.0
     
-    for stock in stock_list:
-        old_price += stock.shares * stock.price
-        current_price += price_dict[stock.name] * stock.shares
+    for s in stock_list:
+        old_price += s.shares * s.price
+        current_price += price_dict[s.name] * s.shares
 
     return f'Current value of portfolio: {current_price} and the current {"gain" if (current_price - old_price) > 0 else "loss"} is: {current_price - old_price:0.2f}'
 
 def make_report(stock_list, price_dict):
     '''Creates a structured report of the data'''
     report = []
-    for stock in stock_list:
-        change = price_dict[stock.name] - stock.price
-        new_tuple = (stock.name,stock.shares,price_dict[stock.name],change)
+    for s in stock_list:
+        change = price_dict[s.name] - s.price
+        new_tuple = (s.name,s.shares,price_dict[s.name],change)
         report.append(new_tuple)
 
     return report

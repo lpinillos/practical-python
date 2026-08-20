@@ -10,9 +10,7 @@ def portfolio_cost(filename):
     records = read_portfolio(filename)
 
     for record in records:
-        nshares = int(record.shares)
-        price = float(record.price)
-        total_cost += nshares * price
+        total_cost += record.cost()
 
     print(f'Total cost: {total_cost}')
 
