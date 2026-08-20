@@ -1,13 +1,19 @@
+#!/usr/bin/env python3
+#report.py
+
 from fileparse import parse_csv
+import sys
 
 def read_portfolio(filename):
     '''Creates a list of dictionaries reading a portfolio.csv'''
-    portfolio = parse_csv(filename, types=[str,int,float])
+    with open(filename,'rt') as file:
+        portfolio = parse_csv(file, types=[str,int,float])
     return portfolio
 
 def read_prices(filename):
     '''Help reading the updated prices in a csv'''
-    prices = dict(parse_csv(filename, types=[str,float], has_headers=False))
+    with open(filename,'rt') as file:
+        prices = dict(parse_csv(file, types=[str,float], has_headers=False))
     return prices
 
 def calculate_gain_loss(stock_list,price_dict):
@@ -45,4 +51,8 @@ def portfolio_report(filename_port, filename_price):
     final_report = make_report(read_portfolio(filename_port),read_prices(filename_price))
     print_report(final_report)
 
-portfolio_report('Data/portfolio.csv', 'Data/prices.csv')
+def main(argv):
+    portfolio_report(argv[1], argv[2])
+
+if __name__ == '__main__':
+    main(sys.argv)

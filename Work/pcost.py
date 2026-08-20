@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+#pcost.py
+
 import sys
 from report import read_portfolio
 def portfolio_cost(filename):
@@ -11,12 +14,10 @@ def portfolio_cost(filename):
         price = float(record['price'])
         total_cost += nshares * price
 
-    return total_cost
+    print(f'Total cost: {total_cost}')
 
-if len(sys.argv) == 2:
-    filename = sys.argv[1]
-else:
-    filename = 'Data/portfolio.csv'
+def main(argv):
+    portfolio_cost(argv[1])
 
-cost = portfolio_cost(filename)
-print(f'Total cost: {cost}')
+if __name__ == '__main__':
+    main(sys.argv)
