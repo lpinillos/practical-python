@@ -1,6 +1,3 @@
-# fileparse.py
-#
-# Exercise 3.3
 import csv
 def parse_csv(filename, select=None, types=None, has_headers=True, delimiter=',', silence_errors=False) -> list:
     '''

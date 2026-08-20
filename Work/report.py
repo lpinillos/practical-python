@@ -1,5 +1,3 @@
-import csv
-import sys
 from fileparse import parse_csv
 
 def read_portfolio(filename):
