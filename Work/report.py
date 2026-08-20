@@ -1,32 +1,15 @@
 import csv
 import sys
+from fileparse import parse_csv
 
 def read_portfolio(filename):
     '''Creates a list of dictionaries reading a portfolio.csv'''
-    portfolio = []
-    with open(filename, 'rt') as f:
-        rows = csv.reader(f)
-        headers = next(rows)
-        for n, row in enumerate(rows,start=1):
-            try:
-                record = dict(zip(headers,row))
-                record['shares'] = int(record['shares'])
-                record['price'] = float(record['price'])
-                portfolio.append(record)
-            except ValueError:
-                print('Could not convert string to float!', row) 
+    portfolio = parse_csv(filename, types=[str,int,float])
     return portfolio
 
 def read_prices(filename):
     '''Help reading the updated prices in a csv'''
-    prices = {}
-    with open(filename, 'r') as file:
-        rows = csv.reader(file)
-        for row in rows:
-            if len(row) == 0:
-                pass
-            else:
-                prices[row[0]] = float(row[1])
+    prices = dict(parse_csv(filename, types=[str,float], has_headers=False))
     return prices
 
 def calculate_gain_loss(stock_list,price_dict):
@@ -43,7 +26,6 @@ def calculate_gain_loss(stock_list,price_dict):
 def make_report(stock_list, price_dict):
     '''Creates a structured report of the data'''
     report = []
-
     for stock in stock_list:
         change = price_dict[stock['name']] - stock['price']
         new_tuple = (stock['name'],stock['shares'],price_dict[stock['name']],change)
