@@ -10,7 +10,7 @@ def portfolio_cost(filename):
     records = read_portfolio(filename)
 
     for record in records:
-        total_cost += record.cost()
+        total_cost += record.cost
 
     print(f'Total cost: {total_cost}')
 
