@@ -9,7 +9,7 @@ class Stock:
 
     @property
     def cost(self):
-        return self.shares * self.price\
+        return self.shares * self.price
 
     @property
     def shares(self):

@@ -5,13 +5,13 @@ from fileparse import parse_csv
 import sys
 import stock
 import tableformat
-
+from portfolio import Portfolio
 def read_portfolio(filename):
     '''Creates a list of dictionaries reading a portfolio.csv'''
     with open(filename,'rt') as file:
         portdicts = parse_csv(file, select=['name','shares','price'], types=[str,int,float])
     portfolio = [ stock.Stock(d['name'], d['shares'], d['price']) for d in portdicts]
-    return portfolio
+    return Portfolio(portfolio)
 
 def read_prices(filename):
     '''Help reading the updated prices in a csv'''
