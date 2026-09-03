@@ -36,7 +36,7 @@ def parse_csv(lines, select=None, types=None, has_headers=True, delimiter=',', s
                 records.append(record)
         except ValueError as e:
             if not silence_errors:
-                print("Couldn't convert",row)
+                print(f"Row {rowno}: Couldn't convert {row}")
                 print(f'Row {rowno}: {e}')
                 
     return records
