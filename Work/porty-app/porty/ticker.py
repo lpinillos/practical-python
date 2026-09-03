@@ -1,6 +1,6 @@
-from follow import follow
-import tableformat
-import report
+from .follow import follow
+from . import tableformat
+from . import report
 import csv
 import sys
 

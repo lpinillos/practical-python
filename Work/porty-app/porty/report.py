@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 #report.py
 
-from fileparse import parse_csv
+from .fileparse import parse_csv
 import sys
-import stock
-import tableformat
-from portfolio import Portfolio
+from . import stock
+from . import tableformat
+from .portfolio import Portfolio
 def read_portfolio(filename,**opts):
     '''Creates a list of dictionaries reading a portfolio.csv'''
     with open(filename) as lines:

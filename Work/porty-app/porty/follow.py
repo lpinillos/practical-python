@@ -15,7 +15,7 @@ def follow(filename):
 
 if __name__ == '__main__':
 
-        import report
+        import Work.porty.report as report
 
         portfolio = report.read_portfolio('../../Data/portfolio.csv')
 

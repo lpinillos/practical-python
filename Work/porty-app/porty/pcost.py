@@ -2,7 +2,7 @@
 #pcost.py
 
 import sys
-from report import read_portfolio
+from .report import read_portfolio
 def portfolio_cost(filename):
     '''Computes the total cost (shares*price) of a portfolio file'''
     portfolio = read_portfolio(filename)
